@@ -3,6 +3,7 @@
 int pin_set[6] = {3,5,6,9,10,11};
 
 int lux = 0;
+int flag = 0;
 
 void setup()
 {
@@ -31,8 +32,21 @@ void loop()
     analogWrite(pin_set[6], lux+HALF);
   }
   
-  for(int i=0; i<6; i++)
+  while(1)
   {
-    digitalWrite(pin_set[i], LOW);
+    for(int i=0; i<6; i++)
+    {
+      if(i%2 == 0) digitalWrite(pin_set[i], flag);
+      else         digitalWrite(pin_set[i], !flag);
+    }
+    delay(50);
+    flag++;
+    flag %= 2;
   }
+   
+
+     
+  }.
+
+  
 }
